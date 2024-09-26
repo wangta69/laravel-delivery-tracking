@@ -1,0 +1,34 @@
+{
+    "name": "wangta69/laravel_delivery_tracking",
+    "description": "Delivery Tracking Api",
+    "keywords": ["laravel", "delivery", "tracking" , "택배", "조회", "추척", "api", "라라벨"],
+    "homepage": "https://mall.onstory.fun",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Pondol",
+        "email": "wangta69@gmail.com",
+        "homepage": "https://www.onstory.fun"
+      }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=7.0.0",
+      "guzzlehttp/guzzle": "^7"
+    },
+    "autoload": {
+      "files": [
+        "src/app/helpers.php"
+      ], "psr-4": {
+        "Pondol\\DeliveryTracking\\": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Pondol\\DeliveryTracking\\DeliveryTrackingServiceProvider"
+        ]
+      }
+    }
+  }
+  
