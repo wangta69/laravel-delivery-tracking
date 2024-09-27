@@ -34,9 +34,34 @@ class YourController  {
   }
 }
 ```
-### error
+## Error Code
 > 정상적으로 진행이되면 error는 false가 출력됩니다. <br>
 > 그렇지 않을 경우 각각 다음과 같은 에러가 출력됩니다.
 - numberValidaionError : 송장값이 잘못된 경우
 - numberValidaionErrorOrnoData : 송장값이 잘못되었거나 데이타가 없을 경우
  
+## 서비스 가능 택배사
+<table>
+  <tr>
+    <td>
+      CJ대한통운
+    </td>
+    <td>
+      우체국택배
+    </td>
+    <td>
+      한진택배
+    </td>
+  </tr>
+   <tr>
+    <td>
+      경동택배
+    </td>
+    <td>
+      로젠택배
+    </td>
+    <td>
+      롯데택배
+    </td>
+  </tr>
+<table>
