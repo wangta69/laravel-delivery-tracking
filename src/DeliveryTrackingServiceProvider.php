@@ -1,10 +1,11 @@
 <?php
 namespace Pondol\DeliveryTracking;
 
-// use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use Pondol\Market\Console\InstallCommand;
 use Illuminate\Support\Facades\Route;
+
+use Pondol\DeliveryTracking\Console\InstallCommand;
+
 class DeliveryTrackingServiceProvider extends ServiceProvider { //  implements DeferrableProvider
   /**
    * Register any application services.
@@ -13,6 +14,10 @@ class DeliveryTrackingServiceProvider extends ServiceProvider { //  implements D
    */
   public function register()
   {
+    $this->mergeConfigFrom(
+      __DIR__.'/config/courier.php','courier'
+    );
+
     if ($this->app->runningInConsole()) {
       $this->commands([
         InstallCommand::class,
@@ -28,14 +33,7 @@ class DeliveryTrackingServiceProvider extends ServiceProvider { //  implements D
     //public function boot(\Illuminate\Routing\Router $router)
   public function boot(\Illuminate\Routing\Router $router)
   {
-
     $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-
-
-
-
-
+    $this->loadViewsFrom(__DIR__.'/resources/views', 'tracking');
   }
-
-
 }

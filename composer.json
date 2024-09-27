@@ -14,7 +14,8 @@
     "minimum-stability": "dev",
     "require": {
       "php": ">=7.0.0",
-      "guzzlehttp/guzzle": "^7"
+      "guzzlehttp/guzzle": "^7",
+      "symfony/dom-crawler": "^5"
     },
     "autoload": {
       "files": [

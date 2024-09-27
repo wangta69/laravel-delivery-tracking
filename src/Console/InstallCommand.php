@@ -1,6 +1,6 @@
 <?php
 
-namespace Pondol\Market\Console;
+namespace Pondol\DeliveryTracking\Console;
 
 use Illuminate\Console\Command;
 // use Illuminate\Filesystem\Filesystem;
@@ -34,9 +34,12 @@ class InstallCommand extends Command
 
   public function handle()
   {
-    $this->info(" Install Laravel Market ");
-    // return $this->installBladeStack();
 
+    $this->info(" Install Laravel Delivery Tracking ");
+    \Artisan::call('vendor:publish',  [
+      '--force'=> true,
+      '--provider' => 'Pondol\DeliveryTrackingphp\DeliveryTrackingServiceProvider'
+    ]);
   }
 
 }
