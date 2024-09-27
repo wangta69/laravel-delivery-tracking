@@ -41,6 +41,8 @@ class DeliveryTrackingController  { //  extends Controller
     }
   }
 
-  
+  public function couriers() {
+    return $this->_couriers();
+  }
 
 }
