@@ -39,6 +39,7 @@ class YourController  {
 > 그렇지 않을 경우 각각 다음과 같은 에러가 출력됩니다.
 - numberValidaionError : 송장값이 잘못된 경우
 - numberValidaionErrorOrnoData : 송장값이 잘못되었거나 데이타가 없을 경우
+- courierNotFoundError : 택배사가 존재하지 않는 경우
  
 ## 서비스 가능 택배사
 <table>

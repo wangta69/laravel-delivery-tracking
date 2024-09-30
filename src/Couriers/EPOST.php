@@ -12,7 +12,7 @@ class EPOST
   * @param String $flag : write, read
   */
   public function tracking($invoicenumber) {
-      ## first check bbs_role
+
     $url = 'https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1='.$invoicenumber;
 
     $client = new Client();
@@ -20,11 +20,7 @@ class EPOST
 
     $response = $client->request('GET', $url);
 
-
     $html = $response->getBody()->getContents(); 
-
-
-
     $html = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $html );
 
     $crawler->addHTMLContent($html, 'UTF-8');
@@ -37,7 +33,7 @@ class EPOST
 
     array_shift($logs);
     if(!count($logs)) {
-      return ['error'=>'numberValidaionErrorOrnodata'];
+      return ['error'=>'numberValidaionErrorOrnoData'];
     }
 
     return ['error'=>false, 'status'=>$this->status(end($logs)[3]), 'logs'=>$this->logs($logs)];

@@ -1,7 +1,6 @@
 <?php
 namespace Pondol\DeliveryTracking\Couriers;
 
-
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -21,24 +20,19 @@ class LOTTE
       'InvNo'=> $invoicenumber,
     ];
 
-
     $headers =  [
       'Accept' => 'application/json, text/javascript, */*; q=0.01',
       'Accept-Encoding' => 'gzip, deflate, br, zstd',
       'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8',
       'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0',
-      // 'origin' => 'https://www.cjlogistics.com',
-      // 'referer' => 'https://www.cjlogistics.com/ko/tool/parcel/tracking',
     ];
 
     $response = $client->request('POST', $url, [
       'form_params' => $form_params,
       'headers' => $headers,
-      // 'cookies' => $cookieJar,
     ]);
 
     $html = $response->getBody()->getContents();
-    // print_r($html);
     $crawler->addHTMLContent($html, 'UTF-8');
 
     $logs = $crawler->filter('div.scroll_date_table table')->filter('tr')->each(function ($tr, $i) {
@@ -49,7 +43,6 @@ class LOTTE
     array_shift($logs);
     return ['error'=>false, 'status'=>$this->status($logs[0][0]), 'logs'=>$this->logs($logs)];
   }
-
 
     // 배송단계를 전체를 통일
     private function status($status) {
@@ -82,12 +75,13 @@ class LOTTE
         preg_match_all('#\((.*?)\)#', $log[3], $info);
         
         if (count($info[1])) {
-          // $deliveryInfo = count($info[1]) === 2 ? $info[1][1] : $info[1][0];
           $result = preg_split('/(:|\s)/', $info[1][0]);
           $data[$k]['deliveryPerson'] = $result[2];
           $data[$k]['contact'] = $result[3];
+        } else {
+          $data[$k]['deliveryPerson'] = '';
+          $data[$k]['contact'] = '';
         }
-        
       }
       return $data;
     }

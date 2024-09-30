@@ -3,7 +3,6 @@ namespace Pondol\DeliveryTracking\Couriers;
 
 
 use GuzzleHttp\Client;
-use Symfony\Component\DomCrawler\Crawler;
 
 class KDEXP
 {
@@ -12,11 +11,9 @@ class KDEXP
   * @param String $flag : write, read
   */
   public function tracking($invoicenumber) {
-      ## first check bbs_role
     $url = 'https://kdexp.com/service/delivery/ajax_basic.do?barcode='.$invoicenumber;
 
     $client = new Client();
-    $crawler = new Crawler();
 
     $response = $client->request('GET', $url);
     $res = json_decode($response->getBody(), true);
@@ -47,8 +44,6 @@ class KDEXP
     $data = [];
     foreach($logs as $k => $log) {
       $data[$k] = [];
-      // foreach($log as $k1 => $v) {
-        // print_r($v);
       $data[$k]['time'] = $log['reg_date'];
       $data[$k]['location'] = $log['location'];
       $data[$k]['status'] = $log['stat'];

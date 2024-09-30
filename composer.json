@@ -2,7 +2,7 @@
     "name": "wangta69/laravel_delivery_tracking",
     "description": "Delivery Tracking Api",
     "keywords": ["laravel", "delivery", "tracking" , "택배", "조회", "추척", "api", "라라벨"],
-    "homepage": "https://mall.onstory.fun",
+    "homepage": "https://www.onstory.fun/doc/programming/laravel/package.delivery-tracking",
     "license": "MIT",
     "authors": [
       {

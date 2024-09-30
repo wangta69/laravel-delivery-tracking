@@ -26,15 +26,26 @@ class DeliveryTrackingController  { //  extends Controller
     */
   public function tracking(Request $request, $courier, $invoicenumber, $type='json')
   {
-    $result = $this->_tracking($courier, $invoicenumber);
+    $_courier = $this->_courier($courier);
+    if($_courier === false) {
+      $result = (object)['error'=>'courierNotFoundError'];
+      switch($type) {
+        case 'html':
+          return view('tracking::show', ['result'=>$result]);
+        default:
+          return response()->json($result, 203);//500, 203
+      }
+    }
+
+    $result = (object)$this->_tracking($courier, $invoicenumber);
+    $result->invoicenumber = $invoicenumber;
+    $result->courier = $_courier;
 
     switch($type) {
       case 'html':
-        
+
         return view('tracking::show', [
           'result'=>$result,
-          'invoicenumber' => $invoicenumber,
-          'courier' => $this->_courier($courier)
         ]);
       default:
         return response()->json($result, 200);//500, 203
@@ -44,5 +55,4 @@ class DeliveryTrackingController  { //  extends Controller
   public function couriers() {
     return $this->_couriers();
   }
-
 }

@@ -27,13 +27,9 @@ class CJGLS
     preg_match('/<input type="hidden" title="인증키" name="_csrf" value="(.*)"/Uis',$response->getBody()->getContents(), $_csrf);
 
     // 01 상품준비 > 02 집화출발 > 03 상품인수 > 04 상품이동중 > 05 배송지도착 > 06 배송출발 > 07 배달완료 
-    // $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
-
-      ## first check bbs_role
     $url = 'https://www.cjlogistics.com/ko/tool/parcel/tracking-detail';
 
     $client = new Client();
-    // $crawler = new Crawler();
     $form_params= [
       'paramInvcNo'=> $invoicenumber,
       '_csrf'=>$_csrf[1]
@@ -56,7 +52,6 @@ class CJGLS
 
     $res = json_decode($response->getBody(), true);
 
-
     $logs = $res['parcelDetailResultMap']['resultList'];
 
     if(!$logs) {
@@ -65,7 +60,6 @@ class CJGLS
 
     return ['error'=>false, 'status'=>$this->status(end($logs)['scanNm']), 'logs'=>$this->logs($logs)];
   }
-
 
     // 배송단계를 전체를 통일
     private function status($status) {

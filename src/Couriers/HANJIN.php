@@ -50,21 +50,15 @@ class HANJIN
 
     // 01방문예정, 02물품수거, 03이동중, 04배송중, 05배송완료
     $status = $crawler->filter('div.delivery-step')->filter('li.on')->each(function ($li, $i) {
-      // return substr(trim($li->text()), 2);
       return trim($li->text());
     });
 
-
-    // 
-    // print_r($crawler);
     // 0=>날짜, 1=>사업장, 2=>배송상태 3=>배송내용 4=>담당직원 5,=>인수자 6=>영업소 7=>연락처
     $logs = $crawler->filter('.waybill-tbl table.board-list-table > tbody')->filter('tr')->each(function ($tr, $i) {
       return $tr->filter('td')->each(function ($td, $i) {
         return trim($td->text());
       });
     });
-
-
 
     return ['error'=>false, 'status'=>$this->status($status[0]), 'logs'=>$this->logs($logs)];
     
@@ -94,33 +88,24 @@ class HANJIN
     $data = [];
     foreach($logs as $k => $log) {
       $data[$k] = [];
-      // foreach($log as $k1 => $v) {
-        // print_r($v);
-        $data[$k]['time'] = $log[0].' '.$log[1];
-        $data[$k]['location'] = $log[2];
-        $data[$k]['status'] = '';
-        // $data[$k]['statusmsg'] = $log[3];
 
-        $statusmsg = preg_split("/\([^()]+\)/", $log[3]);
-        $data[$k]['statusmsg'] = $statusmsg[0];
-        preg_match_all('#\((.*?)\)#', $log[3], $info);
-       
-        if(count($info[1])) {
+      $data[$k]['time'] = $log[0].' '.$log[1];
+      $data[$k]['location'] = $log[2];
+      $data[$k]['status'] = '';
 
+      $statusmsg = preg_split("/\([^()]+\)/", $log[3]);
+      $data[$k]['statusmsg'] = $statusmsg[0];
+      preg_match_all('#\((.*?)\)#', $log[3], $info);
+      
+      if(count($info[1])) {
+        $result = preg_split('/(\s:\s|\s)/', $info[1][0]);
 
-          $result = preg_split('/(\s:\s|\s)/', $info[1][0]);
- 
-          $data[$k]['deliveryPerson'] = trim($result[1]);
-          $data[$k]['contact'] = trim($result[2]);
-        }
-      //   if($log[3]) {
-      //     $log_3 = explode('◆', $log[6]);
-      //     $data[$k]['deliveryPerson'] = $log_6[1];
-      //   } else {
-      //     $data[$k]['deliveryPerson'] = '';
-      //   }
-      //   $data[$k]['contact'] = $log[7];
-      // // }
+        $data[$k]['deliveryPerson'] = trim($result[1]);
+        $data[$k]['contact'] = trim($result[2]);
+      } else {
+        $data[$k]['deliveryPerson'] = '';
+        $data[$k]['contact'] = '';
+      }
     }
     return $data;
   }
