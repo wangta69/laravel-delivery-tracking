@@ -11,6 +11,10 @@
     <div class="card-body">
     존재하지 않는 택배사 입니다.
     </div>
+    @elseif($result->error == 'numberValidaionError' || $result->error == 'numberValidaionErrorOrnoData')
+    <div class="card-body">
+    송장번호가 존재하지 않습니다.
+    </div>
     @endif
   </div>
 @else

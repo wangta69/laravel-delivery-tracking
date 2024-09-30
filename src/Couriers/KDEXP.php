@@ -17,8 +17,11 @@ class KDEXP
 
     $response = $client->request('GET', $url);
     $res = json_decode($response->getBody(), true);
-
-    return ['error'=>false, 'status'=>$this->status(end($res['items'])['sc_stat']), 'logs'=>$this->logs($res['items'])];
+    if(isset($res['result']) && $res['result'] == 'suc') {
+      return ['error'=>false, 'status'=>$this->status(end($res['items'])['sc_stat']), 'logs'=>$this->logs($res['items'])];
+    } else {
+      return ['error'=>'numberValidaionError'];
+    }
 
   }
 

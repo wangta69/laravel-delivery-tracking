@@ -6,6 +6,8 @@ composer require wangta69/laravel_delivery_tracking
 ```
 
 ## How to Use
+### call main page
+yourdomain.com/delivery-tracking
 ### call available couriers
 ```
 yourdomain.com/delivery-tracking/couriers
@@ -45,24 +47,24 @@ class YourController  {
 <table>
   <tr>
     <td>
-      CJ대한통운
+      CJ대한통운 (CJGLS)
     </td>
     <td>
-      우체국택배
+      우체국택배 (EPOST)
     </td>
     <td>
-      한진택배
+      한진택배 (HANJIN)
     </td>
   </tr>
    <tr>
     <td>
-      경동택배
+      경동택배 (KDEXP)
     </td>
     <td>
-      로젠택배
+      로젠택배 (KGB)
     </td>
     <td>
-      롯데택배
+      롯데택배 (LOTTE)
     </td>
   </tr>
-<table>
+</table>

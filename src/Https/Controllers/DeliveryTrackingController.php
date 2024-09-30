@@ -18,6 +18,13 @@ class DeliveryTrackingController  { //  extends Controller
   }
 
 
+  public function search() {
+
+    return view('tracking::search', [
+      'couriers' => $this->_couriers()
+    ]);
+  }
+
 /*
     * Tracking delivery
     *

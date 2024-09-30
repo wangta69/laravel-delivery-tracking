@@ -26,7 +26,7 @@ trait Tracking  {
     // }
   } catch (Error  $e) {
     // report($e); 
-    echo "===================================";
+    // echo "===================================";
     $result['error'] = $e->getMessage();
     $result['status'] = null;
     $result['logs'] = [];
