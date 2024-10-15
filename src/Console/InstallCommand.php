@@ -17,7 +17,7 @@ class InstallCommand extends Command
    *
    * @var string
    */
-  protected $signature = 'deliverytracking:install';
+  protected $signature = 'pondol:install-deliverytracking';
 
   /**
    * The console command description.

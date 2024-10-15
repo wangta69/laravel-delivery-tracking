@@ -2,7 +2,7 @@
 
 ## Installation
 ```
-composer require wangta69/laravel_delivery_tracking
+composer require wangta69/laravel-delivery-tracking
 ```
 
 ## How to Use
