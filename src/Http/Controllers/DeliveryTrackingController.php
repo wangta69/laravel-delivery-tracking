@@ -1,5 +1,5 @@
 <?php
-namespace Pondol\DeliveryTracking\Https\Controllers;
+namespace Pondol\DeliveryTracking\Http\Controllers;
 
 
 use Illuminate\Http\Request;
