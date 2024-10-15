@@ -3,10 +3,6 @@
 namespace Pondol\DeliveryTracking\Console;
 
 use Illuminate\Console\Command;
-// use Illuminate\Filesystem\Filesystem;
-// use Illuminate\Support\Str;
-// use Symfony\Component\Process\PhpExecutableFinder;
-// use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
