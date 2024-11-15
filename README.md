@@ -6,8 +6,10 @@ composer require wangta69/laravel-delivery-tracking
 ```
 
 ## How to Use
-### call main page
+### call main page (search page)
+```
 yourdomain.com/delivery-tracking
+```
 ### call available couriers
 ```
 yourdomain.com/delivery-tracking/couriers

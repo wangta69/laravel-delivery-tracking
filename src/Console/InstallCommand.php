@@ -13,7 +13,7 @@ class InstallCommand extends Command
    *
    * @var string
    */
-  protected $signature = 'pondol:install-deliverytracking';
+  protected $signature = 'pondol:install-deliverytracking  {type=full}';
 
   /**
    * The console command description.
@@ -30,6 +30,16 @@ class InstallCommand extends Command
 
   public function handle()
   {
+    $type = $this->argument('type');
+    $this->installLaravelDeliveryTracking($type);
+
+    
+  }
+
+  private function installLaravelDeliveryTracking($type) {
+    // if ($type == 'full') {
+    //   $this->call('pondol:install-common');
+    // }
 
     $this->info(" Install Laravel Delivery Tracking ");
     \Artisan::call('vendor:publish',  [
