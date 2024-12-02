@@ -41,10 +41,10 @@ class InstallCommand extends Command
     //   $this->call('pondol:install-common');
     // }
 
-    $this->info(" Install Laravel Delivery Tracking ");
+    $this->info(" Install Laravel Delivery Tracking!! ");
     \Artisan::call('vendor:publish',  [
       '--force'=> true,
-      '--provider' => 'Pondol\DeliveryTrackingphp\DeliveryTrackingServiceProvider'
+      '--provider' => 'Pondol\DeliveryTracking\DeliveryTrackingServiceProvider'
     ]);
   }
 
